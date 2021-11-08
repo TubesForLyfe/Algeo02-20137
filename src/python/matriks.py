@@ -18,5 +18,5 @@ def det(m):
 def inv(m):
     return np.linalg.inv(m)
 
-def norm(m):
-    return np.linalg.norm(m)
+def normalize(v):
+    return v/np.linalg.norm(v)
