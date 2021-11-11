@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GWF</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <header>
+            <image class="top-picture" src="{{ url_for('static', filename='Top-background.png') }}">
+            <div class="top-left">
+                <img src="{{ url_for('static', filename='Right-arrow.png') }}">
+                <p>GWF</p>
+            </div>
+            <div class="top-right">
+                <p>Online Compress Image Tools</p>
+                <img src="{{ url_for('static', filename='Logo-itb.png') }}">
+            </div>
+        </header>
+        <div>
+            <img class="top-border" src="{{ url_for('static', filename='Top-border.png') }}">
+            <div class="text">
+                <div class="isi1">
+                    <p>Safety</p>
+                    <img src="{{ url_for('static', filename='Line 1.png') }}">
+                </div>
+                <div class="txt">
+                    <p class="t11">Seluruh file anda tidak</p>
+                    <p class="t12">akan tersimpan di server</p>
+                    <p class="t13">kami. Jadi file anda</p>
+                    <p class="t14">masih bersifat privasi</p>
+                </div>
+            </div>
+            <div class="text">
+                <div class="isi2">
+                    <p>Universal</p>
+                    <img src="{{ url_for('static', filename='Line 2.png') }}">
+                </div>
+                <div class="txt">
+                    <p class="t21">Tools ini bersifat</p>
+                    <p class="t22">universal, jadi bisa</p>
+                    <p class="t23">digunakan oleh semua device</p>
+                    <p class="t24">dan semua platform</p>
+                </div>
+            </div class="text">
+                <div class="isi3">
+                    <p>Praktis</p>
+                    <img src="{{ url_for('static', filename='Line 3.png') }}">
+                </div>
+                <div class="txt">
+                    <p class="t31">Tools ini bersifat</p>
+                    <p class="t32">praktis dan mudah</p>
+                    <p class="t33">digunakan oleh user</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <img class="bottom-picture" src="{{ url_for('static', filename='Body-background.jpg') }}">
+            <div>
+                <img class="bottom-border" src="{{ url_for('static', filename='Bottom-border.png') }}">
+                <div class="bottom">
+                    <img class="bottom-border2" src="{{ url_for('static', filename='Bottom-border2.png') }}">
+                    <p>Pilih File</p>
+                    <img class="line" src="{{ url_for('static', filename='Line.png') }}">
+                    <img class="bottom-arrow" src="{{ url_for('static', filename='Bottom-arrow.png') }}">
+                </div>
+                <p class="bottom-txt">Atau Seret Image ke sini</p>
+            </div>
+        </div>
+    </body>
+</html>
