@@ -60,7 +60,12 @@
                 <img class="bottom-border" src="{{ url_for('static', filename='Bottom-border.png') }}">
                 <div class="bottom">
                     <img class="bottom-border2" src="{{ url_for('static', filename='Bottom-border2.png') }}">
-                    <p>Pilih File</p>
+                    <form action="/" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="image" id="image">
+                        <label class="input" for="image">Pilih File</label>
+                        <button type="submit" name="upload" id="upload"></button>
+                        <label class="upload" for="upload">Upload</label>
+                    </form>
                     <img class="line" src="{{ url_for('static', filename='Line.png') }}">
                     <img class="bottom-arrow" src="{{ url_for('static', filename='Bottom-arrow.png') }}">
                 </div>

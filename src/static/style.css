@@ -367,12 +367,28 @@
     border-radius: 35px;
 }
 
-.bottom p {
+.input {
     position: absolute;
     width: 216px;
     height: 47px;
     left: 190px;
-    top: 360px;
+    top: 395px;
+
+    font-family: IBM Plex Mono;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 47px;
+
+    color: #000000;
+}
+
+.upload {
+    position: absolute;
+    width: 216px;
+    height: 47px;
+    left: 550px;
+    top: 610px;
 
     font-family: IBM Plex Mono;
     font-style: italic;
@@ -418,5 +434,4 @@
     line-height: 31px;
 
     color: #FFFFFF;
-
 }
