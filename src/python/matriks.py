@@ -93,6 +93,7 @@ def gauss(m):
 
     return m
 
+
 def jordan(m):
     i = 0
     k = 0
@@ -116,41 +117,55 @@ def jordan(m):
             k += 1
     return m
 
+
 def minimum(A, B):
     if A >= B:
         return B
     else:
         return A
 
+
 def multiply_matriks(A, B):
     return np.matmul(A, B)
+
 
 def ukuranMatriks(A):
     n, m = A.shape
     return n, m
 
+
 def singularKiri(A):
     return dot(A, transpose(A))
+
 
 def singularKanan(A):
     return dot(transpose(A), A)
 
+
 def ArrayOfFloat(A):
     return np.array(A, dtype=float)
+
 
 def CopyMatriks(A):
     return A.copy()
 
+
 def Keluaran(A, B):
     return np.outer(A, B)
+
 
 def SplitMatriks(A):
     X, Y, Z = [array(i) for i in zip(*A)]
     return X, Y, Z
 
+
 def nullspace(A):
+    D = []
     NullSpace = null_space(A)
-    return NullSpace
+    for i in range(len(NullSpace)):
+        D.extend(NullSpace[i])
+    return D
+
 
 def VektorAwal(ukuran):
     '''
@@ -174,6 +189,7 @@ def SVD_Awal(A, epsilon=1e-13):
     Menghitung iteration awal dari SVD dengan menggunakan Power Method
 
     '''
+    A = ArrayOfFloat(A)
     N, M = ukuranMatriks(A)
     x = VektorAwal(minimum(N, M))  # set x sebagai vektor awal yang sembarang
     count = 0
@@ -221,10 +237,27 @@ def SVD(A, epsilon=1e-13):
         Tampungan_SVD.append((sigma, U, V))
         increment += 1
     singularValues, U_Singular, V_Singular = SplitMatriks(Tampungan_SVD)
-    B = []
-    B.append(V_Singular)
-    B.append(nullspace(multiply_matriks(transpose(A), A)))
-    return singularValues, transpose(U_Singular), B
+    
+    # Convert dari array of numpy jadi array biasa
+    C = []
+    C.extend(nullspace(multiply_matriks(transpose(A), A)))
+    singularValuesfix = []
+    for i in range(len(singularValues)):
+        singularValuesfix.append(singularValues[i])
+
+    U_SingularFix = [[] for i in range(len(transpose(U_Singular)))]
+    for i in range(len(transpose(U_Singular))):
+        for j in range(len(transpose(U_Singular)[i])):
+            U_SingularFix[i].append(transpose(U_Singular)[i][j])
+
+    V_SingularFix = [[] for i in range(len(transpose(V_Singular)))]
+    for i in range(len(transpose(V_Singular))):
+        for j in range(len(transpose(V_Singular)[i])):
+            V_SingularFix[i].append(transpose(V_Singular)[i][j])
+    for i in range(len(V_SingularFix)):
+        V_SingularFix[i].append(C[i])
+
+    return singularValuesfix, U_SingularFix, V_SingularFix
 
 
 if __name__ == "__main__":
@@ -234,5 +267,7 @@ if __name__ == "__main__":
          98.606268329932019, 104.662515711370302, 1]
     A, B, C = SVD(CEK)
     print(A)
+    print("\n")
     print(B)
+    print("\n")
     print(C)
