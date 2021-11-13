@@ -194,7 +194,7 @@ def SVD(A, epsilon=1e-10):
         V_SingularFix[i].append(C[i])
     V_SingularFix1 = np.array(V_SingularFix)
 
-    return singularValues, U_Singular, V_SingularFix1
+    return U_Singular, singularValues, V_SingularFix1
 
 
 NAME = input('MASUKKAN NAMA FILE YANG INGIN DICOMPRESS : ')
