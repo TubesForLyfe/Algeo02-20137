@@ -126,9 +126,12 @@ images = {
 
 
 def show_images(img_name):
-    'It will show image in widgets'
+    """
+    Untuk Menampilkan Gambar
+
+    """
     print("Loading...")
-    plt.title("Close this plot to open compressed image...")
+    plt.title("Bila plot ini ditutup maka gambar akan segera dicompress...")
     plt.imshow(images[img_name])
     plt.axis('off')
     plt.show()
@@ -139,20 +142,25 @@ compressed_image = None
 
 
 def Kompress_image(Nama_image, k):
-    print("processing...")
+    print("Please Wait")
+    print("---------------------------------------------------")
+    print("PROCESSING...")
     global compressed_image
     img = images[Nama_image]
     r = img[:, :, 0]
     g = img[:, :, 1]
     b = img[:, :, 2]
-    print("compressing...")
+    print("Please Wait")
+    print("------------------------------------------------------")
+    print("COMPRESSING...")
     ur, sr, vr = SVD(r, k)
     ug, sg, vg = SVD(g, k)
     ub, sb, vb = SVD(b, k)
-    rr = np.dot(ur[:, :k], np.dot(np.diag(sr[:k]), vr[:k, :]))
-    rg = np.dot(ug[:, :k], np.dot(np.diag(sg[:k]), vg[:k, :]))
-    rb = np.dot(ub[:, :k], np.dot(np.diag(sb[:k]), vb[:k, :]))
-
+    rr = Dot(ur[:, :k], Dot(np.diag(sr[:k]), vr[:k, :]))
+    rg = Dot(ug[:, :k], Dot(np.diag(sg[:k]), vg[:k, :]))
+    rb = Dot(ub[:, :k], Dot(np.diag(sb[:k]), vb[:k, :]))
+    print("Please Wait")
+    print("-----------------------------------------------")
     print("arranging...")
     rimg = np.zeros(img.shape)
     rimg[:, :, 0] = rr
