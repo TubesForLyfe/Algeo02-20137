@@ -1,12 +1,12 @@
+import numpy
+from PIL import Image
+import matplotlib.pyplot as plt
 import numpy as np
-from numpy import array, identity, diagonal
-from numpy.lib.function_base import append
-from numpy.lib.shape_base import split
+from numpy import array
 from numpy.linalg import norm
 from random import normalvariate
 from math import sqrt
 from scipy.linalg import null_space
-
 double_epsilon = 1e-140
 
 
@@ -59,63 +59,6 @@ def add_multiply(m, k, r, rm):
 
 def eq(a, b):
     return abs(a-b) < double_epsilon
-
-
-def firstNonZeroOccurence(m, row, start_idx):
-    i = start_idx
-    found = False
-    while(i < len(m[row]) and not found):
-        found = not eq(m[row][i], 0)
-        i += 1
-
-    return (i-1) if found else None
-
-
-def gauss(m):
-    i = 0
-    k = 0
-    while(i < len(m) and k < len(m[0])):
-        i_max = firstNonZeroOccurence(m, k, i)
-        if(eq(m[i_max][k], 0.0)):
-            k += 1
-        else:
-            if(i_max != i):
-                m = swap_row(m, i_max, i)
-            tmp = m[i][k]
-            for j in range(len(m[0])):
-                m[i][j] /= tmp
-            for j in range(i+1, len(m)):
-                for p in range(k+1, len(m[0])):
-                    m[j][p] = m[j][p] - m[i][p]*m[j][k]
-                m[j][k] = 0.0
-            i += 1
-            k += 1
-
-    return m
-
-
-def jordan(m):
-    i = 0
-    k = 0
-    while(i < len(m) and k < len(m[0])):
-        i_max = firstNonZeroOccurence(m, k, i)
-        if(eq(m[i_max][k], 0.0)):
-            k += 1
-        else:
-            if(i_max != i):
-                swap_row(m, i_max, i)
-            tmp = m[i][k]
-            for j in range(len(m[0])):
-                m[i][j] /= tmp
-            for j in range(len(m)):
-                if(j == i):
-                    continue
-                for p in range(k+1, len(m[0])):
-                    m[j][p] = m[j][p] - m[i][p]*m[j][k]
-                m[j][k] = 0.0
-            i += 1
-            k += 1
-    return m
 
 
 def minimum(A, B):
@@ -184,7 +127,7 @@ def VektorAwal(ukuran):
     return VektorAwal
 
 
-def SVD_Awal(A, epsilon=1e-13):
+def SVD_Awal(A, epsilon=1e-10):
     '''
     Menghitung iteration awal dari SVD dengan menggunakan Power Method
 
@@ -203,6 +146,10 @@ def SVD_Awal(A, epsilon=1e-13):
     V_Awal = V_Awal / norm(V_Awal)
     count += 1
     while (abs(dot(V_Awal, V_Akhir)) + epsilon <= 1):
+        print("-------------------------------------------------------------")
+        print("LOADING")
+        print("-------------------------------------------------------------")
+        print("Mohon Tunggu")
         V_Akhir = V_Awal
         V_Awal = dot(B, V_Akhir)
         V_Awal = V_Awal / norm(V_Awal)
@@ -210,12 +157,11 @@ def SVD_Awal(A, epsilon=1e-13):
     return V_Awal
 
 
-def SVD(A, epsilon=1e-13):
+def SVD(A, epsilon=1e-10):
     '''
     Menghitung Next iteration dari SVD dengan menggunakan Power Method
 
     '''
-    A = ArrayOfFloat(A)
     N, M = ukuranMatriks(A)
     Tampungan_SVD = []
     Min_Ukuran = minimum(N, M)
@@ -237,37 +183,83 @@ def SVD(A, epsilon=1e-13):
         Tampungan_SVD.append((sigma, U, V))
         increment += 1
     singularValues, U_Singular, V_Singular = SplitMatriks(Tampungan_SVD)
-    
-    # Convert dari array of numpy jadi array biasa
+
     C = []
     C.extend(nullspace(multiply_matriks(transpose(A), A)))
-    singularValuesfix = []
-    for i in range(len(singularValues)):
-        singularValuesfix.append(singularValues[i])
-
-    U_SingularFix = [[] for i in range(len(transpose(U_Singular)))]
-    for i in range(len(transpose(U_Singular))):
-        for j in range(len(transpose(U_Singular)[i])):
-            U_SingularFix[i].append(transpose(U_Singular)[i][j])
-
     V_SingularFix = [[] for i in range(len(transpose(V_Singular)))]
     for i in range(len(transpose(V_Singular))):
         for j in range(len(transpose(V_Singular)[i])):
             V_SingularFix[i].append(transpose(V_Singular)[i][j])
     for i in range(len(V_SingularFix)):
         V_SingularFix[i].append(C[i])
+    V_SingularFix1 = np.array(V_SingularFix)
 
-    return singularValuesfix, U_SingularFix, V_SingularFix
+    return singularValues, U_Singular, V_SingularFix1
 
 
-if __name__ == "__main__":
-    CEK = np.array([[4, -30, 60, -35, 89], [-30, 300, -675, 420, 76], [
-        60, -675, 1620, -1050, 162], [918, 123, 124, 543, 5145]], dtype='float64')
-    U = [-89.690597505101972, 66.114188662585089,
-         98.606268329932019, 104.662515711370302, 1]
-    A, B, C = SVD(CEK)
-    print(A)
-    print("\n")
-    print(B)
-    print("\n")
-    print(C)
+NAME = input('MASUKKAN NAMA FILE YANG INGIN DICOMPRESS : ')
+images = {
+    "GWF KOMPRESS": np.asarray(Image.open(NAME))
+}
+
+
+def show_images(img_name):
+    'It will show image in widgets'
+    print("Loading...")
+    plt.title("Close this plot to open compressed image...")
+    plt.imshow(images[img_name])
+    plt.axis('off')
+    plt.show()
+
+
+show_images('GWF KOMPRESS')
+compressed_image = None
+
+
+def Kompress_image(Nama_image, k):
+    print("processing...")
+    global compressed_image
+    img = images[Nama_image]
+    r = img[:, :, 0]
+    g = img[:, :, 1]
+    b = img[:, :, 2]
+    print("compressing...")
+    ur, sr, vr = SVD(r)
+    ug, sg, vg = SVD(g)
+    ub, sb, vb = SVD(b)
+    rr = np.dot(ur[:, :k], np.dot(np.diag(sr[:k]), vr[:k, :]))
+    rg = np.dot(ug[:, :k], np.dot(np.diag(sg[:k]), vg[:k, :]))
+    rb = np.dot(ub[:, :k], np.dot(np.diag(sb[:k]), vb[:k, :]))
+
+    print("arranging...")
+    rimg = np.zeros(img.shape)
+    rimg[:, :, 0] = rr
+    rimg[:, :, 1] = rg
+    rimg[:, :, 2] = rb
+
+    for ind1, row in enumerate(rimg):
+        for ind2, col in enumerate(row):
+            for ind3, value in enumerate(col):
+                if value < 0:
+                    rimg[ind1, ind2, ind3] = abs(value)
+                if value > 255:
+                    rimg[ind1, ind2, ind3] = 255
+
+    compressed_image = rimg.astype(np.uint8)
+    plt.title(Nama_image+"\n")
+    plt.imshow(compressed_image)
+    plt.axis('off')
+    plt.show()
+    compressed_image = Image.fromarray(compressed_image)
+
+
+imOrig = Image.open(NAME)
+im = numpy.array(imOrig)
+A, B, C = im.shape
+print("Batas terbesar nilai K pada Kompresi : ", A)
+print("Catatan : semakin besar nilai k yang dimasukkan semakin tidak terkompresi gambarnya")
+print("-------------------------------------------------------------------------------------")
+K = int(input("MASUKKAN NILAI K : "))
+NAME_SAVE = input("MASUKKAN NAMA FILE YANG INGIN DISAVE : ")
+print('DONE - Compressed the image! Over and out!')
+Kompress_image("GWF KOMPRESS", K)
