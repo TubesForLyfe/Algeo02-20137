@@ -197,6 +197,7 @@ def main():
       plt.imshow(compressed_image)
       plt.axis('off')
       plt.show()
+      compressed_image = Image.fromarray(compressed_image)
 
    # Code Utama
 
