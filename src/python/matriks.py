@@ -121,7 +121,7 @@ def SVD(A, K):
 
 NAME = input('MASUKKAN NAMA FILE YANG INGIN DICOMPRESS : ')
 images = {
-    "GWF KOMPRESS": np.asarray(Image.open(NAME))
+    "GWF COMPRESS": np.asarray(Image.open(NAME))
 }
 
 
@@ -137,7 +137,7 @@ def show_images(img_name):
     plt.show()
 
 
-show_images("GWF KOMPRESS")
+show_images("GWF COMPRESS")
 compressed_image = None
 
 
@@ -192,4 +192,4 @@ print("-------------------------------------------------------------------------
 K = int(input("MASUKKAN NILAI K : "))
 NAME_SAVE = input("MASUKKAN NAMA FILE YANG INGIN DISAVE : ")
 print('DONE - Compressed the image! Over and out!')
-Kompress_image("GWF KOMPRESS", K)
+Kompress_image("GWF COMPRESS", K)
