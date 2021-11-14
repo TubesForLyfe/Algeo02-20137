@@ -56,7 +56,7 @@ def ArrayOfFloat(A):
 
 
 def Refleksi_Householder(A):
-    """Perform QR decomposition of matrix A using Householder reflection."""
+    """ Mendekomposisi Matriks Menggunakan Householder Reflection """
     (Baris, Kolom) = UkuranMatriks(A)
 
     Q = Identity(Baris)
