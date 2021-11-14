@@ -25,15 +25,6 @@ def Dot(A, B):
     return np.dot(A, B)
 
 
-def get_u(A, v, sigma):
-    u = []
-    for i in range(len(sigma)):
-        ui = (1/sigma[i])*Dot(A, v.T[i])
-        u.append(ui)
-
-    return transpose(array(u))
-
-
 def Outer(A, B):
     return np.outer(A, B)
 
@@ -60,20 +51,19 @@ def Zero_Like(A):
 # Code Untuk Mencari SVD
 
 
-def Refleksi_HouseHolder(A):
+def Refleksi_Householder(A):
+    """Perform QR decomposition of matrix A using Householder reflection."""
     (Baris, Kolom) = UkuranMatriks(A)
+
     Q = Identity(Baris)
     R = CopyMatriks(A)
 
     for i in range(Baris - 1):
         x = R[i:, i]
-
         e = Zero_Like(x)
-        e[0] = copysign(Norm(A), -A[i, i])
+        e[0] = copysign(Norm(x), -A[i, i])
         u = x + e
-
         v = u / Norm(u)
-
         Q_i = Identity(Baris)
         Q_i[i:, i:] -= 2.0 * Outer(v, v)
 
@@ -86,12 +76,11 @@ def Refleksi_HouseHolder(A):
 def qr_eigen(M, maxIter):
     """
     Menghitung nilai Sigma dan V
-
     """
     # Initialize empty array to store eigenvalues
     A = []
 
-    V = np.eye(M.shape[0])
+    Q = np.eye(M.shape[0])
 
     # Append input matrix M to A
     A.append(None)
@@ -101,28 +90,25 @@ def qr_eigen(M, maxIter):
     # Gunakan QR houseHolder Reflection
     for k in range(maxIter):
         A[0] = A[1]
-        q, R = Refleksi_HouseHolder(A[0])
+        q, R = Refleksi_Householder(A[0])
         A[1] = Dot(R, q)
-        V = Dot(V, q)
+        Q = Dot(Q, q)
     SingularValues = []
     for i in DiagonalMatriks(A[1]):
         if i > 0:
             SingularValues.append(sqrt(i))
     Sigma = array(SingularValues)
-    return Sigma, V
+    return Sigma, Q
 
 
 def SVD(A, K):
-    Sigma, V = qr_eigen(Dot(A.T, A), K)
-    U = get_u(A, V, Sigma)
-    V_singular = np.negative(V)
-    return np.negative(U), Sigma, V_singular.T
+    Sigma, U = qr_eigen(Dot(A, transpose(A)), K)
+    Sigma, V = qr_eigen(Dot(transpose(A), A), K)
+    return np.negative(U), Sigma, V.T
 
 
 NAME = input('MASUKKAN NAMA FILE YANG INGIN DICOMPRESS : ')
-images = {
-    "GWF COMPRESS": np.asarray(Image.open(NAME))
-}
+images = {"GWF KOMPRESS": np.asarray(Image.open(NAME))}
 
 
 def show_images(img_name):
@@ -137,7 +123,7 @@ def show_images(img_name):
     plt.show()
 
 
-show_images("GWF COMPRESS")
+show_images("GWF KOMPRESS")
 compressed_image = None
 
 
@@ -192,4 +178,4 @@ print("-------------------------------------------------------------------------
 K = int(input("MASUKKAN NILAI K : "))
 NAME_SAVE = input("MASUKKAN NAMA FILE YANG INGIN DISAVE : ")
 print('DONE - Compressed the image! Over and out!')
-Kompress_image("GWF COMPRESS", K)
+Kompress_image("GWF KOMPRESS", K)
