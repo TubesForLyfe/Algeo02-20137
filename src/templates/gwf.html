@@ -63,13 +63,15 @@
                     <form action="/" method="POST" enctype="multipart/form-data">
                         <input type="file" name="image" id="image">
                         <label class="input" for="image">Pilih File</label>
+                        <input type="text" class="number" name="number" id="number">
                         <button type="submit" name="upload" id="upload"></button>
-                        <label class="upload" for="upload">Upload</label>
+                        <label class="upload" for="upload">Compress</label>
                     </form>
                     <img class="line" src="{{ url_for('static', filename='Line.png') }}">
                     <img class="bottom-arrow" src="{{ url_for('static', filename='Bottom-arrow.png') }}">
                 </div>
-                <p class="bottom-txt">Atau Seret Image ke sini</p>
+                <p class="bottom-txt1">Compress Size</p>
+                <p class="bottom-txt2">%</p>
             </div>
         </div>
     </body>

@@ -383,11 +383,27 @@
     color: #000000;
 }
 
+.number {
+    position: absolute;
+    width: 40px;
+    height: 35px;
+    left: 400px;
+    top: 465px;
+
+    font-family: IBM Plex Mono;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 47px;
+
+    color: #000000;
+}
+
 .upload {
     position: absolute;
     width: 216px;
     height: 47px;
-    left: 550px;
+    left: 530px;
     top: 610px;
 
     font-family: IBM Plex Mono;
@@ -420,17 +436,33 @@
     background: #150515;
 }
 
-.bottom-txt {
+.bottom-txt1 {
     position: absolute;
     width: 346px;
     height: 31px;
-    left: 280px;
-    top: 505px;
+    left: 190px;
+    top: 440px;
 
     font-family: IBM Plex Mono;
     font-style: italic;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 30px;
+    line-height: 31px;
+
+    color: #FFFFFF;
+}
+
+.bottom-txt2 {
+    position: absolute;
+    width: 346px;
+    height: 31px;
+    left: 455px;
+    top: 440px;
+
+    font-family: IBM Plex Mono;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 30px;
     line-height: 31px;
 
     color: #FFFFFF;
