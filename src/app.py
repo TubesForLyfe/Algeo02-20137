@@ -65,10 +65,14 @@ def main():
    def Zero_Like(A):
       return np.zeros_like(A)
 
-   # Code Untuk Mencari SVD dan Kompresi Gambar
+
+   def ArrayOfFloat(A):
+      return np.array(A, dtype=float)
+
+   # Code Untuk Mencari SVD
 
    def Refleksi_Householder(A):
-      """Perform QR decomposition of matrix A using Householder reflection."""
+      """ Mendekomposisi Matriks Menggunakan Householder Reflection """
       (Baris, Kolom) = UkuranMatriks(A)
 
       Q = Identity(Baris)
@@ -93,9 +97,8 @@ def main():
       """
       Menghitung nilai Sigma dan V
       """
-      # Initialize empty array to store eigenvalues
+      # Inisialisasi Array Kosong
       A = []
-
       Q = np.eye(M.shape[0])
 
       # Append input matrix M to A
@@ -117,10 +120,30 @@ def main():
       return Sigma, Q
 
 
+   def Get_U(A, Sigma, V):
+      U = []
+      for i in range(len(Sigma)):
+         U.append(np.multiply(1/Sigma[i], Dot(A, transpose(V)[i])))
+      return np.array(U)
+
+
+   def Get_V(A, Sigma, U):
+      V = []
+      for i in range(len(Sigma)):
+         V.append(np.multiply(1/Sigma[i], Dot(transpose(A), transpose(U)[i])))
+      return np.array(V)
+
+
    def SVD(A, K):
-      Sigma, U = qr_eigen(Dot(A, transpose(A)), K)
-      Sigma, V = qr_eigen(Dot(transpose(A), A), K)
-      return np.negative(U), Sigma, V.T
+      A = ArrayOfFloat(A)
+      M, N = UkuranMatriks(A)
+      if (M >= N):
+         Sigma, U = qr_eigen(Dot(A, transpose(A)), K)
+         V = Get_V(A, Sigma, U)
+      else:
+         Sigma, V = qr_eigen(Dot(transpose(A), A), K)
+         U = Get_U(A, Sigma, V)
+      return transpose(U), Sigma, transpose(V)
 
 
    def show_images(img_name):
@@ -174,7 +197,6 @@ def main():
       plt.imshow(compressed_image)
       plt.axis('off')
       plt.show()
-      compressed_image = Image.fromarray(compressed_image)
 
    # Code Utama
 
@@ -189,7 +211,7 @@ def main():
          else:
             filename = secure_filename(image.filename)
             image.save(os.path.join("",filename))
-            images = { "GWF KOMPRESS": np.asarray(Image.open(filename)) }
+            images = {"GWF KOMPRESS": np.asarray(Image.open(filename))}
             show_images("GWF KOMPRESS")
             imOrig = Image.open(filename)
             im = np.array(imOrig)
