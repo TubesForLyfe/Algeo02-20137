@@ -1,4 +1,4 @@
-### Tubes-Algeo_2_IF_20137
+# Tubes-Algeo_2_IF_2123
 
 Tugas Besar 2 IF 2123 Aljabar Linier dan Geometri Aplikasi Nilai Eigen dan Vektor Eigen dalam Kompresi Gambar Semester I Tahun 2021/2022
 
@@ -12,9 +12,9 @@ Kelompok GWF
 
 ## How to Run
 
-### Build
+## Build
 
-# Visual Studio Code
+### Visual Studio Code
 
 Sebelum mengeksekusi program, program harus mendownload python terlebih dahulu di <a href="https://www.python.org/library">sini</a>. Setelah itu, lakukan penginstalan flask dan library yang diperlukan pada program di terminal seperti berikut.
 
@@ -27,7 +27,7 @@ pip install math
 ```
 Program kemudian siap dijalankan.
 
-### Run
+## Run
 
 File `.py` dapat dieksekusi pada terminal dengan
 
