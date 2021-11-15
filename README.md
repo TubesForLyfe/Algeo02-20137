@@ -35,7 +35,7 @@ File `.py` dapat dieksekusi pada terminal dengan
 python app.py
 ```
 
-Kemudian, jalankan <h2>localhost</h2> pada peramban.
+Kemudian, jalankan localhost pada peramban.
 
 
 ## Fitur
