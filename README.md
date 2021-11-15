@@ -1,4 +1,4 @@
-### Tubes-Algeo_2_IF_2123
+### Tubes-Algeo_2_IF_20137
 
 Tugas Besar 2 IF 2123 Aljabar Linier dan Geometri Aplikasi Nilai Eigen dan Vektor Eigen dalam Kompresi Gambar Semester I Tahun 2021/2022
 
@@ -26,17 +26,17 @@ Jika muncul error `bash: ./build.sh: Permission denied`, beri izin dulu dengan
 $ chmod +x build.sh
 ```
 
-File kemudian akan di-compile dan disimpan di directory yang sama dengan `build.sh` dengan nama `Algeo02.jar`, yang bisa diganti dengan mengganti `build.sh`.
+File kemudian akan di-compile dan disimpan di directory yang sama dengan `build.sh` dengan nama `app.py`, yang bisa diganti dengan mengganti `build.sh`.
 
 ### Run
 
-File `.jar` yang telah dicompile dapat dieksekusi dengan
+File `.py` dapat dieksekusi dengan
 
 ```bash
-$ Python -jar Algeo02.jar
+$ Python app.py
 ```
 
-`Algeo02` dapat disesuaikan dengan nama file setelah di-compile
+Kemudian, jalankan `localhost` pada peramban.
 
 
 ## Fitur
