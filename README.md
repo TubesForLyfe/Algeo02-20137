@@ -14,19 +14,18 @@ Kelompok GWF
 
 ### Build
 
-Sebelum mengeksekusi program, program harus di-compile terlebih dahulu. File `build.sh` merupakan file bash script yang dapat membantu dalam meng-compile program di Linux. Cara menggunakan build.sh adalah dengan run di terminal.
+# Visual Studio Code
+
+Sebelum mengeksekusi program, program harus mendownload python terlebih dahulu di <a href="https://www.python.org/library">sini</a>. Setelah itu, lakukan penginstalan flask dan library yang diperlukan pada program di terminal seperti berikut.
 
 ```bash
-$ ./build.sh
+pip install flask
+pip install numpy
+pip install pillow
+pip install matplotlib
+pip install math
 ```
-
-Jika muncul error `bash: ./build.sh: Permission denied`, beri izin dulu dengan 
-
-```bash
-$ chmod +x build.sh
-```
-
-File kemudian akan di-compile dan disimpan di directory yang sama dengan `build.sh` dengan nama `app.py`, yang bisa diganti dengan mengganti `build.sh`.
+Program kemudian siap dijalankan.
 
 ### Run
 
@@ -36,7 +35,7 @@ File `.py` dapat dieksekusi pada terminal dengan
 python app.py
 ```
 
-Kemudian, jalankan `localhost` pada peramban.
+Kemudian, jalankan <h2>localhost</h2> pada peramban.
 
 
 ## Fitur
@@ -47,6 +46,6 @@ Kemudian, jalankan `localhost` pada peramban.
 3. Kompresi File
 ```
 
-Pilih metode input bisa langsung dari web dengan mengklik tombol pilih file dan mengisi persentase kompresi
+Pilih metode input bisa langsung dari web dengan mengklik tombol pilih file dan mengisi persentase kompresi.
 
-File yang telah dikompress bisa disimpan dengan cara mengklik tombol save yang ada pada plot gambar yang telah dikompress
+File yang telah dikompress bisa disimpan dengan cara mengklik tombol save yang ada pada plot gambar yang telah dikompress.
