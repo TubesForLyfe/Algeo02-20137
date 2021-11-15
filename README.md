@@ -1,4 +1,4 @@
-# Tubes-Algeo_IF_2123# Algeo02-20137
+Algeo02-20137
 
 Tugas Besar 2 IF 2123 Aljabar Linier dan Geometri Aplikasi Nilai Eigen dan Vektor Eigen dalam Kompresi Gambar Semester I Tahun 2021/2022
 
