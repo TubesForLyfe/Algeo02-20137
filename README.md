@@ -30,10 +30,10 @@ File kemudian akan di-compile dan disimpan di directory yang sama dengan `build.
 
 ### Run
 
-File `.py` dapat dieksekusi dengan
+File `.py` dapat dieksekusi pada terminal dengan
 
 ```bash
-$ Python app.py
+python app.py
 ```
 
 Kemudian, jalankan `localhost` pada peramban.
@@ -43,11 +43,10 @@ Kemudian, jalankan `localhost` pada peramban.
 
 ```
 1. Pilih File
-2. Kompress File
-3. Pilih persentase kompresi
-
+2. Pilih persentase kompresi
+3. Kompresi File
 ```
 
-pilih metode input bisa langsung dari web dengan mengklik tombol pilih file
+Pilih metode input bisa langsung dari web dengan mengklik tombol pilih file dan mengisi persentase kompresi
 
 File yang telah dikompress bisa disimpan dengan cara mengklik tombol save yang ada pada plot gambar yang telah dikompress
